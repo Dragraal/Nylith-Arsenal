@@ -1,0 +1,761 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/nikyy2/rayfield-UI/main/lib'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Made by Nylith",
+   LoadingTitle = "Nylith Arsenal",
+   LoadingSubtitle = "Made by Nylith",
+   ConfigurationSaving = {
+      Enabled = false,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Nylith"
+   }
+})
+
+local MainTab = Window:CreateTab("Features", nil) -- Title, Image
+local MainSection = MainTab:CreateSection("Main")
+
+local BlatantTab = Window:CreateTab("Blatant Features", nil) -- Title, Image
+local BlatantSection = BlatantTab:CreateSection("Features")
+
+local MiscTab = Window:CreateTab("Misc", nil) -- Title, Image
+local MiscSection = MiscTab:CreateSection("Misc")
+
+local CreditTab = Window:CreateTab("Credits", nil) -- Title, Image
+local CreditSection = CreditTab:CreateSection("Credits")
+
+Rayfield:Notify({
+   Title = "Execution",
+   Content = "discord.gg/Nylith",
+   Duration = 4.2,
+   Image = nil,
+   Actions = { -- Notification Buttons
+      Ignore = {
+         Name = "Okay",
+         Callback = function()
+         print("Okay")
+      end
+   },
+},
+})
+
+local Button = MainTab:CreateButton({
+   Name = "ESP",
+   Callback = function()
+   local gui = Instance.new("BillboardGui");
+gui.Name = "";
+gui.AlwaysOnTop = true;
+gui.LightInfluence = 0;
+gui.Size = UDim2.new(1.75, 0, 1.75, 0);
+local frame = Instance.new("Frame", gui);
+frame.BackgroundColor3 = Color3.fromRGB(170, 0, 0);
+frame.Size = UDim2.new(1, 0, 1, 0);
+frame.BorderSizePixel = 4;
+frame.BorderColor3 = Color3.fromRGB(0, 0, 0);
+local gi = gui:Clone();
+local body = frame:Clone();
+body.Parent = gi;
+body.BackgroundColor3 = Color3.fromRGB(0, 170, 170);
+
+for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game:GetService("Players").LocalPlayer.Name and v.Character and v.Character:FindFirstChild("Head") then
+        gui:Clone().Parent = v.Character.Head;
+    end
+end
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Esp Activated!"; Duration=5;})
+   end,
+})
+
+local SpeedHackButton = BlatantTab:CreateToggle({
+   Name = "Speed Hack",
+   Callback = function()
+      _G.WS = "65"
+      local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid
+      Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+         Humanoid.WalkSpeed = _G.WS
+      end)
+      Humanoid.WalkSpeed = _G.WS
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Speed Hack Activated!"; Duration=5;})
+   end,
+})
+
+local FireRateButton = BlatantTab:CreateToggle({
+   Name = "Fire-Rate Hack",
+   Callback = function()
+      local replicationstorage = game.ReplicatedStorage
+
+      while wait(5) do
+         for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+            if v.Name == "Auto" then
+               v.Value = true
+            end
+            if v.Name == "FireRate" then
+               v.Value = 0.02
+            end
+         end
+      end
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Fire-Rate Activated!"; Duration=5;})
+   end,
+})
+
+local NoRecoilButton = MainTab:CreateToggle({
+   Name = "No Recoil",
+   Callback = function()
+      local replicationstorage = game.ReplicatedStorage
+
+      while wait(5) do
+         for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+            if v.Name == "RecoilControl" then
+               v.Value = 0
+            end
+            if v.Name == "MaxSpread" then
+               v.Value = 0
+            end
+         end
+      end
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="NoRecoil Activated!"; Duration=5;})
+   end,
+})
+local WallBangButton = BlatantTab:CreateToggle({
+   Name = "Wall Bang",
+   Callback = function()
+      function getPlayersName()
+         for i, v in pairs(game:GetChildren()) do
+            if v.ClassName == "Players" then
+               return v.Name
+            end
+         end
+      end
+
+      local function WallbangFunction()
+         local players = getPlayersName()
+         local plr = game[players].LocalPlayer
+
+         while wait(1) do
+            for _, v in pairs(game[players]:GetPlayers()) do
+               if v.Name ~= plr.Name and v.Character then
+                  v.Character.RightUpperLeg.CanCollide = false
+                  v.Character.RightUpperLeg.Transparency = 1
+                  v.Character.RightUpperLeg.Size = Vector3.new(20, 20, 20)
+
+                  v.Character.LeftUpperLeg.CanCollide = false
+                  v.Character.LeftUpperLeg.Transparency = 1
+                  v.Character.LeftUpperLeg.Size = Vector3.new(20, 20, 20)
+
+                  v.Character.HeadHB.CanCollide = false
+                  v.Character.HeadHB.Transparency = 1
+                  v.Character.HeadHB.Size = Vector3.new(27, 27, 27)
+
+                  v.Character.HumanoidRootPart.CanCollide = false
+                  v.Character.HumanoidRootPart.Transparency = 1
+                  v.Character.HumanoidRootPart.Size = Vector3.new(20, 20, 20)
+               end
+            end
+         end
+      end
+
+      WallbangFunction()
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Wall Bang Activated!"; Duration=5;})
+   end,
+})
+
+local SilentAimButton = MainTab:CreateToggle({
+   Name = "Silent Aim (just an expander)",
+   Callback = function()
+      function getPlayersName()
+         for i, v in pairs(game:GetChildren()) do
+            if v.ClassName == "Players" then
+               return v.Name
+            end
+         end
+      end
+
+      local function SilentAimFunction()
+         local players = getPlayersName()
+         local plr = game[players].LocalPlayer
+
+         while wait(1) do
+            for _, v in pairs(game[players]:GetPlayers()) do
+               if v.Name ~= plr.Name and v.Character then
+                  v.Character.RightUpperLeg.CanCollide = false
+                  v.Character.RightUpperLeg.Transparency = 1
+                  v.Character.RightUpperLeg.Size = Vector3.new(13, 13, 13)
+
+                  v.Character.LeftUpperLeg.CanCollide = false
+                  v.Character.LeftUpperLeg.Transparency = 1
+                  v.Character.LeftUpperLeg.Size = Vector3.new(13, 13, 13)
+
+                  v.Character.HeadHB.CanCollide = false
+                  v.Character.HeadHB.Transparency = 1
+                  v.Character.HeadHB.Size = Vector3.new(17, 17, 17)
+
+                  v.Character.HumanoidRootPart.CanCollide = false
+                  v.Character.HumanoidRootPart.Transparency = 1
+                  v.Character.HumanoidRootPart.Size = Vector3.new(13, 13, 13)
+               end
+            end
+         end
+      end
+
+      print("silentaim ✅")
+      SilentAimFunction()
+game.StarterGui:SetCore("SendNotification", {Title="Lego Hack"; Text="SilentAim Activated!"; Duration=5;})
+   end,
+})
+
+local InfAmmoButton = BlatantTab:CreateButton({
+   Name = "Ammo Hack",
+   Callback = function()
+      local replicationstorage = game.ReplicatedStorage
+
+      while wait() do
+         game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount.Value = 999
+         game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount2.Value = 999
+      end
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Inf Ammo Activated!"; Duration=5;})
+   end,
+})
+
+local InfiniteJumpButton = BlatantTab:CreateToggle({
+   Name = "Infinite Jump",
+   Callback = function()
+      local InfiniteJumpEnabled = true
+
+      game:GetService("UserInputService").JumpRequest:Connect(function()
+         if InfiniteJumpEnabled then
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+         end
+      end)
+game.StarterGui:SetCore("SendNotification", {Title="Lego Hack"; Text="Infinite Jump Activated!"; Duration=5;})
+   end,
+})
+
+local Toggle = BlatantTab:CreateToggle({
+   Name = "NoClip",
+   CurrentValue = false,
+   Flag = "Toggle69", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(v)
+local runService = game:GetService("RunService")
+local player = game:GetService("Players").LocalPlayer
+
+_G.noclip = not _G.noclip
+
+local function ToggleCollision(part)
+    if part:IsA("BasePart") then
+        part.CanCollide = false
+    end
+end
+
+local function NoClipCallback()
+    if _G.noclip then
+        for _, character in ipairs(player.Character:GetDescendants()) do
+            ToggleCollision(character)
+        end
+    end
+end
+
+runService.Stepped:Connect(NoClipCallback)
+
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Noclip Activated!"; Duration=5;})
+   end,
+})
+
+local LowGFXButton = MiscTab:CreateButton({
+   Name = "Low GFX",
+   Callback = function()
+      local ToDisable = {
+         Textures = true,
+         VisualEffects = true,
+         Parts = true,
+         Particles = true,
+         Sky = true
+      }
+
+      local ToEnable = {
+         FullBright = false
+      }
+
+      local Stuff = {}
+
+      for _, v in next, game:GetDescendants() do
+         if ToDisable.Parts then
+            if v:IsA("Part") or v:IsA("Union") or v:IsA("BasePart") then
+               v.Material = Enum.Material.SmoothPlastic
+               table.insert(Stuff, 1, v)
+            end
+         end
+
+         if ToDisable.Particles then
+            if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Explosion") or v:IsA("Sparkles") or v:IsA("Fire") then
+               v.Enabled = false
+               table.insert(Stuff, 1, v)
+            end
+         end
+
+         if ToDisable.VisualEffects then
+            if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRaysEffect") then
+               v.Enabled = false
+               table.insert(Stuff, 1, v)
+            end
+         end
+
+         if ToDisable.Textures then
+            if v:IsA("Decal") or v:IsA("Texture") then
+               v.Texture = ""
+               table.insert(Stuff, 1, v)
+            end
+         end
+
+         if ToDisable.Sky then
+            if v:IsA("Sky") then
+               v.Parent = nil
+               table.insert(Stuff, 1, v)
+            end
+         end
+      end
+
+      game:GetService("TestService"):Message("Effects Disabler Script : Successfully disabled "..#Stuff.." assets / effects. Settings :")
+
+      for i, v in next, ToDisable do
+         print(tostring(i)..": "..tostring(v))
+      end
+
+      if ToEnable.FullBright then
+         local Lighting = game:GetService("Lighting")
+
+         Lighting.FogColor = Color3.fromRGB(255, 255, 255)
+         Lighting.FogEnd = math.huge
+         Lighting.FogStart = math.huge
+         Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+         Lighting.Brightness = 5
+         Lighting.ColorShift_Bottom = Color3.fromRGB(255, 255, 255)
+         Lighting.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+         Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
+         Lighting.Outlines = true
+      end
+game.StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Low GFX Activated!"; Duration=5;})
+   end,
+})
+
+local Credits = CreditTab:CreateButton({
+   Name = "Made by Nylith | discord.gg/Nylith"
+})
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Camera = game:GetService("Workspace").CurrentCamera
+local UserInputService = game:GetService("UserInputService")
+
+local AimbotEnabled = false
+local TeamCheckEnabled = false
+local FOVSize = 120
+local Smoothness = 0.1
+local AimPart = "Head"
+local Holding = false
+
+local FovCircle = Drawing.new("Circle")
+FovCircle.Position = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+FovCircle.Radius = FOVSize
+FovCircle.Color = Color3.fromRGB(255, 255, 255)
+FovCircle.Visible = false -- Initially hidden
+FovCircle.NumSides = 64
+FovCircle.Filled = false
+FovCircle.Transparency = 1
+FovCircle.Thickness = 1
+
+local function IsPlayerInFOV(player)
+    if player.Character and player.Character:FindFirstChild(AimPart) then
+        local partPos = Camera:WorldToViewportPoint(player.Character[AimPart].Position)
+        local mousePos = UserInputService:GetMouseLocation()
+        local distance = (Vector2.new(partPos.X, partPos.Y) - mousePos).Magnitude
+        return distance < FOVSize
+    end
+    return false
+end
+
+local function IsEnemy(player)
+    if TeamCheckEnabled then
+        return player.Team ~= LocalPlayer.Team
+    end
+    return true
+end
+
+local function GetClosestPlayer()
+    local closestPlayer = nil
+    local shortestDistance = FOVSize
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and IsPlayerInFOV(player) and IsEnemy(player) then
+            local partPos = Camera:WorldToViewportPoint(player.Character[AimPart].Position)
+            local mousePos = UserInputService:GetMouseLocation()
+            local distance = (Vector2.new(partPos.X, partPos.Y) - mousePos).Magnitude
+
+            if distance < shortestDistance then
+                closestPlayer = player
+                shortestDistance = distance
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+local function SmoothAim(targetPosition)
+    local cameraCFrame = Camera.CFrame
+    local direction = (targetPosition - cameraCFrame.Position).Unit
+    local newCFrame = CFrame.new(cameraCFrame.Position, cameraCFrame.Position + direction)
+    Camera.CFrame = cameraCFrame:Lerp(newCFrame, Smoothness / 100)
+end
+
+UserInputService.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 and AimbotEnabled then
+        Holding = true
+        while Holding do
+            local target = GetClosestPlayer()
+            if target and target.Character and target.Character:FindFirstChild(AimPart) then
+                SmoothAim(target.Character[AimPart].Position)
+            end
+            wait()
+        end
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton2 then
+        Holding = false
+    end
+end)
+
+-- Adding Aimbot toggle button to Rayfield UI (replace with your UI implementation)
+local AimbotToggle = MainTab:CreateToggle({
+    Name = "Aimbot",
+    CurrentValue = false,
+    Flag = "AimbotToggle",
+    Callback = function(value)
+        AimbotEnabled = value
+        FovCircle.Visible = value -- Show or hide the FOV circle based on aimbot status
+        if not value then
+            Holding = false
+        end
+    end
+})
+
+local TeamCheckToggle = MainTab:CreateToggle({
+    Name = "Team Check (for aimbot)",
+    CurrentValue = false,
+    Flag = "TeamCheckToggle",
+    Callback = function(value)
+        TeamCheckEnabled = value
+    end
+})
+
+local FOVSlider = MainTab:CreateSlider({
+    Name = "FOV Size",
+    Range = {10, 500},
+    Increment = 1,
+    Suffix = "FOV",
+    CurrentValue = FOVSize,
+    Flag = "FOVSlider",
+    Callback = function(value)
+        FOVSize = value
+        FovCircle.Radius = value -- Update the FOV circle size
+    end
+})
+
+local SmoothnessSlider = MainTab:CreateSlider({
+    Name = "Smoothness (1 is smoothest)",
+    Range = {1, 100},
+    Increment = 1,
+    Suffix = "",
+    CurrentValue = Smoothness,
+    Flag = "SmoothnessSlider",
+    Callback = function(value)
+        Smoothness = value
+    end
+})
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local StarterGui = game:GetService("StarterGui")
+
+local SpeedHackEnabled = false
+local SpeedValue = 65 -- Default speed value
+local SpeedHackButton = BlatantTab:CreateToggle({
+    Name = "Speed Hack (recommend using with fast stop)",
+    CurrentValue = false,
+    Flag = "SpeedHackToggle",
+    Callback = function(value)
+        SpeedHackEnabled = value
+        local Humanoid = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if Humanoid then
+            if value then
+                Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+                    if SpeedHackEnabled then
+                        Humanoid.WalkSpeed = SpeedValue
+                    end
+                end)
+                Humanoid.WalkSpeed = SpeedValue
+                StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Speed Hack Activated!"; Duration=5;})
+            else
+                -- Reset to default walk speed when speed hack is disabled
+                Humanoid.WalkSpeed = 16
+                StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Speed Hack Deactivated!"; Duration=5;})
+            end
+        end
+    end,
+})
+
+local SpeedSlider = BlatantTab:CreateSlider({
+    Name = "Speed Value",
+    Range = {16, 250},
+    Increment = 1,
+    Suffix = " Speed",
+    CurrentValue = SpeedValue,
+    Flag = "SpeedSlider",
+    Callback = function(value)
+        SpeedValue = value
+        if SpeedHackEnabled then
+            local Humanoid = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            if Humanoid then
+                Humanoid.WalkSpeed = SpeedValue
+            end
+        end
+    end
+})
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local StarterGui = game:GetService("StarterGui")
+
+local FastStopEnabled = false
+
+local FastStopButton = MainTab:CreateToggle({
+    Name = "Fast Stop",
+    CurrentValue = false,
+    Flag = "FastStopToggle",
+    Callback = function(value)
+        FastStopEnabled = value
+        local Humanoid = LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if Humanoid then
+            if value then
+                Humanoid.WalkSpeed = 0
+                StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Fast Stop Activated!"; Duration=5;})
+            else
+                Humanoid.WalkSpeed = 16
+                StarterGui:SetCore("SendNotification", {Title="Arsenal Hack"; Text="Fast Stop Deactivated!"; Duration=5;})
+            end
+        end
+    end,
+})
+
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
+
+local player = Players.LocalPlayer
+local camera = Workspace.CurrentCamera
+local mouseDown = false
+local runServiceConnection = nil
+
+local function enableInfiniteAmmo()
+    while getgenv().AutoTP do
+        wait()
+        local playerGui = player.PlayerGui:FindFirstChild("GUI")
+        if playerGui and playerGui:FindFirstChild("Client") and playerGui.Client:FindFirstChild("Variables") then
+            playerGui.Client.Variables.ammocount.Value = 999
+            playerGui.Client.Variables.ammocount2.Value = 999
+        end
+    end
+end
+
+local function getClosestEnemyPlayer()
+    local closestDistance = math.huge
+    local closestPlayer = nil
+
+    for _, enemyPlayer in pairs(Players:GetPlayers()) do
+        if enemyPlayer ~= player and enemyPlayer.TeamColor ~= player.TeamColor and enemyPlayer.Character then
+            local character = enemyPlayer.Character
+            local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+            local humanoid = character:FindFirstChild("Humanoid")
+            if humanoidRootPart and humanoid and humanoid.Health > 0 then
+                local distance = (player.Character.HumanoidRootPart.Position - humanoidRootPart.Position).Magnitude
+                if distance < closestDistance and humanoidRootPart.Position.Y >= 0 then
+                    closestDistance = distance
+                    closestPlayer = enemyPlayer
+                end
+            end
+        end
+    end
+
+    return closestPlayer
+end
+
+local function isValidPosition(position)
+    -- Example safety check: ensure position Y is within the map bounds
+    return position.Y >= 0 and position.Y <= 1000 -- Adjust bounds as needed
+end
+
+local function startAutoFarm()
+    ReplicatedStorage.wkspc.TimeScale.Value = 12
+
+    runServiceConnection = RunService.Stepped:Connect(function()
+        if getgenv().AutoTP then
+            local closestPlayer = getClosestEnemyPlayer()
+            if closestPlayer then
+                local targetPosition = closestPlayer.Character.HumanoidRootPart.Position + Vector3.new(0, 0, -4)
+                
+                if isValidPosition(targetPosition) then
+                    if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+                        player.Character.HumanoidRootPart.CFrame = CFrame.new(targetPosition)
+                        camera.CFrame = CFrame.new(camera.CFrame.Position, closestPlayer.Character.Head.Position)
+
+                        if not mouseDown then
+                            mouse1press()
+                            mouseDown = true
+                        end
+                    end
+                else
+                    -- If the target position is invalid, stop mouse actions
+                    if mouseDown then
+                        mouse1release()
+                        mouseDown = false
+                    end
+                end
+            else
+                if mouseDown then
+                    mouse1release()
+                    mouseDown = false
+                end
+            end
+        else
+            if runServiceConnection then
+                runServiceConnection:Disconnect()
+                runServiceConnection = nil
+            end
+            if mouseDown then
+                mouse1release()
+                mouseDown = false
+            end
+        end
+    end)
+end
+
+local function onCharacterAdded(character)
+    wait(0.5)
+    startAutoFarm()
+end
+
+local AutoTPButton = BlatantTab:CreateToggle({
+    Name = "Auto-TP (best to use with knife)",
+    CurrentValue = false,
+    Flag = "AutoTPToggle",
+    Callback = function(value)
+        getgenv().AutoTP = value
+
+        if value then
+            wait(0.5) -- Short delay to ensure the game state is updated
+            startAutoFarm()
+            enableInfiniteAmmo() -- Enable infinite ammo when Auto-TP is enabled
+        else
+            ReplicatedStorage.wkspc.CurrentCurse.Value = ""
+            getgenv().AutoTP = false
+            ReplicatedStorage.wkspc.TimeScale.Value = 1
+            if runServiceConnection then
+                runServiceConnection:Disconnect()
+                runServiceConnection = nil
+            end
+            if mouseDown then
+                mouse1release()
+                mouseDown = false
+            end
+        end
+    end
+})
+
+player.CharacterAdded:Connect(onCharacterAdded)
+
+if getgenv().AutoTP then
+    wait(0.5) -- Short delay to ensure the game state is updated
+    startAutoFarm()
+    enableInfiniteAmmo()
+end
+
+local IsChadToggle = MiscTab:CreateToggle({
+    Name = "IsChad Rank (1 rank at a time)",
+    CurrentValue = false,
+    Flag = "IsChadToggle",
+    Callback = function(x)
+        local player = game.Players.LocalPlayer
+        if player:FindFirstChild('IsChad') then
+            player.IsChad:Destroy()
+        end
+        if x then
+            local IsChad = Instance.new('IntValue', player)
+            IsChad.Name = 'IsChad'
+        end
+    end
+})
+
+local VIPToggle = MiscTab:CreateToggle({
+    Name = "VIP Rank (1 rank at a time)",
+    CurrentValue = false,
+    Flag = "VIPToggle",
+    Callback = function(x)
+        local player = game.Players.LocalPlayer
+        if player:FindFirstChild('VIP') then
+            player.VIP:Destroy()
+        end
+        if x then
+            local VIP = Instance.new('IntValue', player)
+            VIP.Name = 'VIP'
+        end
+    end
+})
+
+local OldVIPToggle = MiscTab:CreateToggle({
+    Name = "OldVIP Rank (1 rank at a time)",
+    CurrentValue = false,
+    Flag = "OldVIPToggle",
+    Callback = function(x)
+        local player = game.Players.LocalPlayer
+        if player:FindFirstChild('OldVIP') then
+            player.OldVIP:Destroy()
+        end
+        if x then
+            local OldVIP = Instance.new('IntValue', player)
+            OldVIP.Name = 'OldVIP'
+        end
+    end
+})
+
+local RominToggle = MiscTab:CreateToggle({
+    Name = "Romin Rank (1 rank at a time)",
+    CurrentValue = false,
+    Flag = "RominToggle",
+    Callback = function(x)
+        local player = game.Players.LocalPlayer
+        if player:FindFirstChild('Romin') then
+            player.Romin:Destroy()
+        end
+        if x then
+            local Romin = Instance.new('IntValue', player)
+            Romin.Name = 'Romin'
+        end
+    end
+})
+
+local IsAdminToggle = MiscTab:CreateToggle({
+    Name = "IsAdmin Rank (1 rank at a time)",
+    CurrentValue = false,
+    Flag = "IsAdminToggle",
+    Callback = function(x)
+        local player = game.Players.LocalPlayer
+        if player:FindFirstChild('IsAdmin') then
+            player.IsAdmin:Destroy()
+        end
+        if x then
+            local IsAdmin = Instance.new('IntValue', player)
+            IsAdmin.Name = 'IsAdmin'
+        end
+    end
+})
